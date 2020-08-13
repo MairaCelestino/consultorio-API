@@ -45,11 +45,11 @@ public class PacienteController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable Long id) {
-		Paciente pacienteDeletado = pacienteRepository.deleteById(id);
-		if (pacienteDeletado != null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Paciente> deleteById(@PathVariable Long id) {
+		Boolean apagado = pacienteRepository.deleteById(id);;
+		if (apagado) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<>(pacienteDeletado, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

@@ -63,16 +63,16 @@ public class PacienteRepository {
 		return null;
 	}
 
-	public Paciente deleteById(Long id) {
+	public Boolean deleteById(Long id) {
 		for (Paciente paciente : getPacientes()) {
 			if (paciente.getId().equals(id)) {
 
 				getPacientes().remove(paciente);
-				return paciente;
-				
+				return true;
+
 			}
 		}
-		return null;
+		return false;
 
 	}
 }
