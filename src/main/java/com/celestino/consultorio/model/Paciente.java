@@ -11,7 +11,6 @@ public class Paciente {
 	}
 
 	public Paciente(Long id, String nome, String email, Integer idade) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;

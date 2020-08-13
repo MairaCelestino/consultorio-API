@@ -87,20 +87,37 @@ public class PacienteRepository {
 	}
 
 	public Paciente insertPaciente(Paciente paciente) {
-		getPacientes();
-		if (paciente.getId() == null) {
-			paciente.setId(Long.valueOf(nextPrimaryKey.longValue()));
-			getPacientes().add(paciente);
-			nextPrimaryKey++;
 
-		}
+		paciente.setId(Long.valueOf(nextPrimaryKey.longValue()));
+		getPacientes().add(paciente);
+		nextPrimaryKey++;
+
 		return paciente;
 	}
-//
-//	public Paciente updatePaciente(Paciente paciente) {
-//			
-//		if (paciente.getId() != null) {
-//			getPacient
-//		}
-//	}
+
+	public Paciente updatePaciente(Paciente paciente) {
+
+		Paciente pacienteAtualizado = null;
+
+		for (Paciente p : getPacientes()) {
+
+			if (p.getId().equals(paciente.getId())) {
+				if (!p.getNome().equals(paciente.getNome())) {
+					p.setNome(paciente.getNome());
+				}
+				if (!p.getIdade().equals(paciente.getIdade())) {
+					p.setIdade(paciente.getIdade());
+				}
+				if (!p.getEmail().equals(paciente.getEmail())) {
+					p.setEmail(paciente.getEmail());
+				}
+
+				pacienteAtualizado = p;
+			}
+
+		}
+
+		return pacienteAtualizado;
+	}
+
 }
